@@ -2,7 +2,7 @@ package Restaurant;
 
 public class MenuItem {
 
-    private Boolean isNew = false;
+    private Boolean isNew = true;
     private Double price;
     private String description;
     private String category;
