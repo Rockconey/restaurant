@@ -1,54 +1,64 @@
 package Restaurant;
-
-import java.util.Date;
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Menu {
 
-        private Date lastUpdated;
-        private ArrayList<Object> smallBites;
-        private ArrayList<Object> plates;
-        private ArrayList<Object> dessert;
-        private String hours;
+        private String lastUpdated;
+        protected ArrayList<Object> menu = new ArrayList<>();
 
-    public Date getLastUpdated() {
+
+    public Menu(String lastUpdated){
+        this.lastUpdated = lastUpdated;
+    }
+
+    public String getLastUpdated() {
         return lastUpdated;
     }
 
-    protected void setLastUpdated(Date aDate){
+    protected void setLastUpdated(String aDate){
         this.lastUpdated = aDate;
     }
 
-    public ArrayList<Object> getSmallBites(){
-        return smallBites;
-    }
-/*I was unsure of the best way to do this. Setting the list equal to one item didn't seem right. So I went with add.
-    I would like feedback.*/
-    protected void setSmallBites(ArrayList<Object> aSmallBite){
-        this.smallBites.add(aSmallBite);
+    public void removeFromMenu(Object aMenuItem){
+       menu.remove(aMenuItem);
+
     }
 
-    public ArrayList<Object> getPlates(){
-        return plates;
+    protected void addToMenu(MenuItem aMenuItem){
+        if(menu.contains(aMenuItem)) {
+            System.out.println("Warning: Menu already contains " + aMenuItem.getName());
+        } else {
+            menu.add(aMenuItem);
+        }
     }
 
-    protected void setPlates(ArrayList<Object> aPlate){
-        this.plates.add(aPlate);
+        public boolean equals(Object toBeCompared){
+            if (toBeCompared == this){
+                return true;
+            }
+            if (toBeCompared == null){
+                return false;
+            }
+            if (toBeCompared.getClass() != getClass()){
+                return false;
+            }
+
+        Menu thisMenu = (Menu) toBeCompared;
+        return thisMenu.lastUpdated.equals(getLastUpdated());
     }
 
-    public ArrayList<Object> getDessert(){
-        return dessert;
+    public String toString(){
+        StringBuilder results = new StringBuilder("");
+        for (Object item : menu) {
+            results.append("Last updated: ").append(lastUpdated).append("\n").append("***** \n").append(item.toString());
+        }
+        return results.toString();
     }
 
-    protected void setDessert(ArrayList<Object> aDessert){
-        this.dessert.add(aDessert);
-    }
-
-    public String getHours(){
-        return hours;
-    }
-
-    protected void setHours(String aHours){
-        this.hours = aHours;
-    }
 }
+
+
+
+
+
