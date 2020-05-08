@@ -21,7 +21,12 @@ public class Menu {
     }
 
     public void removeFromMenu(Object aMenuItem){
-       menu.remove(aMenuItem);
+        for (int i = 0; i < menu.size(); i++) {
+            if (aMenuItem.equals(menu.get(i))) {
+                menu.remove(i);
+            }
+        } //Edited out the below and added loop with equals method to demonstrate proficiency.
+//       menu.remove(aMenuItem);
 
     }
 
